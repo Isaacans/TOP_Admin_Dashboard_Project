@@ -1,46 +1,86 @@
 /* 
-    CSS reset 
+    CSS Reset 
 */
-
 *, *::before, *::after {
     box-sizing: border-box;
-  }
-  * {
+}
+* {
     margin: 0;
-  }
-  body {
+}
+body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
-  }
-  img, picture, video, canvas, svg {
+}
+img, picture, video, canvas, svg {
     display: block;
     max-width: 100%;
-  }
-  input, button, textarea, select {
+}
+input, button, textarea, select {
     font: inherit;
-  }
-  p, h1, h2, h3, h4, h5, h6 {
+}
+p, h1, h2, h3, h4, h5, h6 {
     overflow-wrap: break-word;
-  }
-  /* 
+}
+/* 
     End of reset 
-  */
+*/
+
+/*
+    CSS Custom Properties
+*/
+:root {
+    --side-panel-bg-color: aquamarine;
+}
+@property --side-panel-text-color {
+    syntax: "<color>";
+    inherits: true;
+    initial-value: #292929;
+}
+/*
+    End of CSS custom properties
+*/
 
 .main-wrapper {
     display: grid;
     grid-template-columns: 1fr 3.5fr;
-    grid-template-rows: 1fr 3.5fr;
+    grid-template-rows: 1fr 4.5fr;
     min-height: 100vh;
+    width: 100%;
 }
 
 .header {
-    background-color: bisque;
+    background-color: hwb(33 77% 0%);
 }
 
 .sidebar {
-    background-color: aquamarine;
+    background-color: var(--side-panel-bg-color);
     grid-row-start: 1;
     grid-row-end: 3;
+    display: grid;
+    grid-template-rows: min-content 4fr 5fr;
+    padding: clamp(10px, 5%, 30px);
+    color: var(--side-panel-text-color);
+    gap: 10px;
+}
+
+.sidebar-item1 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    p {
+        font-size: 1.5em;
+        line-height: 1.1;
+        font-weight: bold;
+    }
+}
+
+img {
+    object-fit: contain;
+    height: 55px;
+    max-width: 80px;
+}
+.sidebar > div {
+    border: solid green 1px;
 }
 
 .main-content {
