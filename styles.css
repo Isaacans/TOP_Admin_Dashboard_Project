@@ -13,7 +13,7 @@ body {
 }
 img, picture, video, canvas, svg {
     display: block;
-    max-width: 100%;
+    max-width: 100%; /* Stop image overflow container */
 }
 input, button, textarea, select {
     font: inherit;
@@ -29,60 +29,175 @@ p, h1, h2, h3, h4, h5, h6 {
     CSS Custom Properties
 */
 :root {
+    --header-background-color: #ffe5c4;
     --side-panel-bg-color: aquamarine;
-}
-@property --side-panel-text-color {
-    syntax: "<color>";
-    inherits: true;
-    initial-value: #292929;
+    --side-panel-text-color: #2c2c2c;
+    --main-background-color: blueviolet;
+    --main-text-color: #ffbb00;
 }
 /*
     End of CSS custom properties
 */
-
+body {
+    color: var(--main-text-color, rgb(134, 21, 21));
+}
 .main-wrapper {
     display: grid;
-    grid-template-columns: 1fr 3.5fr;
-    grid-template-rows: 1fr 4.5fr;
+    grid-template-columns: minmax(min-content, 1fr) 4fr;
+    grid-template-rows: min-content 1fr;
     min-height: 100vh;
-    width: 100%;
+}
+
+svg {
+    width: 1.8rem;
 }
 
 .header {
-    background-color: hwb(33 77% 0%);
-}
-
-.sidebar {
-    background-color: var(--side-panel-bg-color);
-    grid-row-start: 1;
-    grid-row-end: 3;
     display: grid;
-    grid-template-rows: min-content 4fr 5fr;
-    padding: clamp(10px, 5%, 30px);
-    color: var(--side-panel-text-color);
-    gap: 10px;
-}
-
-.sidebar-item1 {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    p {
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: 1.7fr 1fr;
+    font-weight: bold;
+    background-color: var(--header-background-color, #ffe5c4);
+    padding: 1vw 2.5vw;
+    gap: clamp(15px, 1.5vw, 95px);
+    div {
+        border: solid black 1px;
+        display: flex;
+        align-items: center;
+    }
+    div:nth-child(1) {
+        gap: 1ch;
+        input[type="search"],
+        input[type="search"]:active {
+            border: none;
+            outline: none;
+            background-color: var(--main-background-color);
+            width: 100%;
+            min-width: 35ch;
+            height: 2.5rem;
+            border-radius: 20px;
+            padding-left: 2.5ch;
+            padding-right: 1ch;
+            font: inherit;
+            color: inherit;
+        }
+        svg {
+            width: 2.5rem;
+            min-width: 2rem;
+        }
+    }
+    div:nth-child(2) {
+        justify-content: end;
+        gap: 2vw;
+        margin-right: 3vw;
         font-size: 1.5em;
-        line-height: 1.1;
-        font-weight: bold;
+    }
+    p {
+        margin-left: 0.8em;
+        span {
+            display: block;
+        }
+        span:nth-child(2) {
+            font-size: 1.9em;
+            line-height: 0.8;
+        }
+    }
+    div:nth-child(4) {
+        display: flex;
+        justify-content: space-evenly;
+        button {
+            color: var(--side-panel-text-color);
+            background-color: var(--side-panel-bg-color);
+            font-weight: bold;
+            border: none;
+            border-radius: 25px;
+            width: 15ch;
+            height: 6ch;
+            margin: 0px 5px;
+        }
     }
 }
 
-img {
-    object-fit: contain;
-    height: 55px;
-    max-width: 80px;
+.profile-picture.main {
+    width: 75px;
 }
-.sidebar > div {
-    border: solid green 1px;
+.profile-picture {
+    width: 55px;
+
 }
 
+.sidebar {
+    background-color: var(--side-panel-bg-color, aquamarine);
+    color: var(--side-panel-text-color);
+    grid-row-start: 1;
+    grid-row-end: 3;
+    display: grid;
+    grid-template-columns: min-content;
+    grid-template-rows: 55px min-content 1fr;
+    padding: 1.1vw;
+    gap: 35px;
+    font-weight: bold;
+}
+
+.sidebar-item.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    p {
+        font-size: 1.7rem;
+        line-height: 1.1;
+        font-weight: bold;
+        padding-right: 60px;
+    }
+    a {
+        display: inline-block;
+        flex-basis: 55px; /* Stops p element movement if logo image fails to load */
+        flex-shrink: 0;
+    }
+}
+.sidebar-item:not(.logo-container) {
+    a {
+        color: inherit;
+        width: min-content;
+        display: grid;
+        grid-template-columns: 1.6rem min-content;
+        grid-auto-rows: 2.4rem;
+        font-size: 1.3rem;
+        align-items: center;
+        gap: 29px;
+        text-decoration: none;
+        position: relative;
+        margin-left: 11px;
+    }
+    svg {
+        fill: var(--side-panel-text-color);
+    }
+    a:hover {
+        text-decoration-color: var(--side-panel-text-color);
+    }   
+    
+    /* Underline slide in */
+    a::after {
+        content: '';
+        position: absolute;
+        bottom: 2px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--side-panel-text-color);
+        transition: opacity 300ms, transform 300ms;
+        transform: translate3d(-100%, 0, 0);
+    }
+    a {
+        overflow: hidden;
+    }
+    a:hover::after{
+        transform: translate3d(0, 0, 0);
+    }
+    /* End slide in */
+}
+
+
 .main-content {
-    background-color: blueviolet;
+    background-color: var(--main-background-color, blueviolet);
 }
