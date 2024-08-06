@@ -6,6 +6,7 @@
 }
 * {
     margin: 0;
+    list-style-type: none;
 }
 body {
     line-height: 1.5;
@@ -39,36 +40,56 @@ p, h1, h2, h3, h4, h5, h6 {
     End of CSS custom properties
 */
 body {
-    color: var(--main-text-color, rgb(134, 21, 21));
+    color: var(--main-text-color, rgb(32, 14, 14));
+    font-size: clamp(12px, calc(0.5rem + 0.5vw), 32px); 
 }
+
 .main-wrapper {
     display: grid;
-    grid-template-columns: minmax(min-content, 1fr) 4fr;
+    grid-template-columns: minmax(min-content, 1fr) 3.9fr;
     grid-template-rows: min-content 1fr;
     min-height: 100vh;
 }
-
 svg {
     width: 1.8rem;
+}
+.profile-picture {
+    width: 55px;
+    border-radius: 50%;
 }
 
 .header {
     display: grid;
     grid-template-rows: min-content 1fr;
-    grid-template-columns: 1.7fr 1fr;
+    grid-template-columns: 1.6fr 1fr;
     font-weight: bold;
     background-color: var(--header-background-color, #ffe5c4);
-    padding: 1vw 2.5vw;
-    gap: clamp(15px, 1.5vw, 95px);
+    padding: 1.2vw 3vw 1vw 2.7vw;
+    gap: 2vw clamp(10px, 1vw, 95px);
+    button:hover {
+        cursor: pointer;
+        box-shadow: -2px 3px 3px darkgrey, 2px -3px 3px lightgrey;
+    }
+    button:active {
+        cursor: pointer;
+        box-shadow: inset 0px 2px 2px darkgrey, inset 0px -3px 1px lightgrey;
+    }
     div {
-        border: solid black 1px;
         display: flex;
         align-items: center;
     }
     div:nth-child(1) {
-        gap: 1ch;
-        input[type="search"],
-        input[type="search"]:active {
+        gap: 2.5ch;
+        svg {
+          min-width: 1.9rem; 
+        }
+        svg:hover {
+            cursor: pointer;
+        }
+        input,
+        input:active,
+        input:focus,
+        input:autofill  {
             border: none;
             outline: none;
             background-color: var(--main-background-color);
@@ -81,9 +102,25 @@ svg {
             font: inherit;
             color: inherit;
         }
-        svg {
-            width: 2.5rem;
-            min-width: 2rem;
+        input * {
+            font-weight: bold;
+            font-size: inherit;
+        }
+        input:-webkit-autofill,                         
+        input:-webkit-autofill:hover, 
+        input:-webkit-autofill:focus,
+        textarea:-webkit-autofill,
+        textarea:-webkit-autofill:hover,
+        textarea:-webkit-autofill:focus,
+        select:-webkit-autofill,
+        select:-webkit-autofill:hover,
+        select:-webkit-autofill:focus {
+            border: none;
+            -webkit-text-fill-color: var(--main-text-color);
+            -webkit-box-shadow: 0 0 0px 1000px var(--main-background-color) inset;
+        }          
+        input:hover {
+            box-shadow: 0px 0px 5px rgb(99, 99, 99), inset 0px 0px 5px rgb(99, 99, 99);
         }
     }
     div:nth-child(2) {
@@ -93,7 +130,7 @@ svg {
         font-size: 1.5em;
     }
     p {
-        margin-left: 0.8em;
+        margin-left: 1.8vw;
         span {
             display: block;
         }
@@ -109,21 +146,17 @@ svg {
             color: var(--side-panel-text-color);
             background-color: var(--side-panel-bg-color);
             font-weight: bold;
+            font-size: 1.15em;
             border: none;
             border-radius: 25px;
-            width: 15ch;
-            height: 6ch;
-            margin: 0px 5px;
+            width: 12ch;
+            height: 4.5ch;
+            margin: 0px 0.3em;
         }
     }
-}
-
-.profile-picture.main {
-    width: 75px;
-}
-.profile-picture {
-    width: 55px;
-
+    .profile-picture.main {
+        width: 85px;
+    }
 }
 
 .sidebar {
@@ -134,7 +167,7 @@ svg {
     display: grid;
     grid-template-columns: min-content;
     grid-template-rows: 55px min-content 1fr;
-    padding: 1.1vw;
+    padding: max(15px, 1.5vw);
     gap: 35px;
     font-weight: bold;
 }
@@ -144,7 +177,7 @@ svg {
     align-items: center;
     gap: 15px;
     p {
-        font-size: 1.7rem;
+        font-size: 1.8em;
         line-height: 1.1;
         font-weight: bold;
         padding-right: 60px;
@@ -162,7 +195,7 @@ svg {
         display: grid;
         grid-template-columns: 1.6rem min-content;
         grid-auto-rows: 2.4rem;
-        font-size: 1.3rem;
+        font-size: 1.6em;
         align-items: center;
         gap: 29px;
         text-decoration: none;
@@ -180,12 +213,12 @@ svg {
     a::after {
         content: '';
         position: absolute;
-        bottom: 2px;
+        bottom: 0px;
         left: 0;
         width: 100%;
         height: 2px;
         background-color: var(--side-panel-text-color);
-        transition: opacity 300ms, transform 300ms;
+        transition: transform 200ms;
         transform: translate3d(-100%, 0, 0);
     }
     a {
@@ -198,6 +231,152 @@ svg {
 }
 
 
-.main-content {
+.main-content-container {
     background-color: var(--main-background-color, blueviolet);
+    display: grid;
+    grid-template-rows: min-content 1fr;
+    grid-template-columns: 2.5fr 1fr;
+    padding: 2.5vw 2vw 3.5vw 1.3vw;
+    /* For a uniform gap and margin */
+    --gap: max(5px, 1vw);
+    row-gap: var(--gap);
+    .main-content-sidebar > section > h1 {
+        margin-bottom: var(--gap);
+    }
+    h1 {
+        font-size: 1.65rem;
+        line-height: 1;
+        font-weight: bold;
+    }
+    column-gap: 2vw;
+    .card-container {
+       display: grid;
+       gap: 2vw;
+       grid-template-rows: repeat(3, minmax(15em, 1fr));
+       grid-template-columns: 1fr 1fr;
+       .card {
+        padding: 1.2em;
+        padding-right: 1em;
+        padding-left: 1.5em;
+        border-radius: 10px;
+        background: linear-gradient(.25turn, orange 5px, 0%, var(--header-background-color));
+        display: flex;
+        flex-direction: column;
+        h1 {
+            line-height: 1.3;
+        }
+        menu {
+            margin-top: auto;
+            display: flex;
+            gap: 1.5em;
+            justify-content: end;
+            align-items: center;
+            height: min-content;
+            padding-top: 1rem;
+            li {
+                display: flex;
+            }
+            button {
+                border: none;
+                height: min-content;
+                padding: 0;
+                background: none;
+                width: 2rem;
+                height: 2rem;
+            }
+            button:hover {
+                cursor: pointer;
+                svg:hover {
+                    width: 1.9rem;
+                }
+                svg:active {
+                    width: 1.7rem;
+                }
+            }
+        }
+       }
+    }
+    @media only screen and (max-width: 1100px) {
+        .card-container {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .main-content-sidebar {
+        grid-row-start: 1;
+        grid-row-end: span 2;
+        grid-column-start: 2;
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+        font-size: 1rem;
+        gap: 2vw;
+        section {
+            display: grid;
+            grid-template-rows: min-content 1fr;
+        }
+        menu {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-content: center;
+            background-color: var(--header-background-color);
+            border-radius: 10px;
+            padding: 1.3em 1.5em;
+            li:hover {
+                background-color: rgba(156, 156, 156, 0.1);
+                border-radius: 10px;
+            }
+        }
+        menu.announcements {
+            span {
+                height: 1px;
+                background-color: rgb(200, 200, 200);
+                margin: 0.3em 0px;
+            }
+            li {
+                padding: 0.5em;
+            }
+        }
+        menu a {
+            text-decoration: none;
+        }
+        menu.announcements h2 {
+            font-weight: bold;
+            font-size: 1rem;
+            color: var(--main-text-color)
+        }
+        menu.announcements p {
+            font-size: 0.9rem;
+            color: var(--main-text-color);
+        }
+
+        menu.trending {
+            li {
+                padding: 0.5em;
+            }
+            li > a {
+                display: flex;
+                color: inherit;
+                div {
+                    display: flex;
+                    flex-flow: column;
+                    justify-content: center;
+                    line-height: 1;
+                    min-width: 10ch;
+                    span {
+                        font-size: 1.2rem;
+                    }
+                    h2 {
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+            
+            img {
+                border-radius: 50%;
+                width: 75px;
+                margin-right: 1em;
+            }
+        }
+    }
 }
