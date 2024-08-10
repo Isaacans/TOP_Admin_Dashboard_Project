@@ -8,7 +8,7 @@
     <link rel="icon" href="images/logo.png">
 </head>
 <body>
-
+    
     <div class="main-wrapper grid">
         <div class="header">
             
@@ -32,7 +32,7 @@
                 <img class="profile-picture" src="images/brian-james-pixabay-profile-picture.jpg" alt="">
                 <span>Brian James</span>
             </div>
-
+            
             <div class="header-item">
                 <img class="profile-picture main" src="images/brian-james-pixabay-profile-picture.jpg" alt="">
                 <p>
@@ -40,20 +40,22 @@
                     <span>Brian James (@brian)</span>
                 </p>
             </div>
-
+            
             <div class="header-item">
+                <span id="navToggle" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
                 <button>New</button>
                 <button>Upload</button>
                 <button>Share</button>
             </div>
         </div>
 
-        <div class="sidebar">    
+        <div id="mainSideNav" class="sidebar">    
             <div class="sidebar-item logo-container">
                 <a href="index.html" title="WebTech Home Page">
                     <img class="logo" src="images/logo.png" alt="Visit WebTech">
                 </a>
                 <p class="logo-text">WebTech <br> Dashboard</p>
+                <a href="javascript:void(0)" class="close-btn" onclick="closeNav()">&times;</a>
             </div>
 
             <div class="sidebar-item">
@@ -99,9 +101,6 @@
                     </svg>
                     Communities
                 </a>
-            </div>
-
-            <div class="sidebar-item">
                 <a href="index.html">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <title>settings</title>
@@ -123,6 +122,11 @@
                     </svg>
                     Privacy
                 </a>
+
+
+            </div>
+
+            <div class="sidebar-item">
             </div>
         </div>
 
@@ -389,5 +393,16 @@
         </div>
     </div>
     
+
+    <script>
+        function openNav() {
+          document.getElementById("mainSideNav").style.display = "initial";
+        }
+        
+        function closeNav() {
+          document.getElementById("mainSideNav").style.display = "none";
+        }
+    </script>
+
 </body>
 </html>
