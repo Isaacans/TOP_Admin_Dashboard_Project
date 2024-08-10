@@ -169,7 +169,6 @@ svg {
     grid-row-start: 1;
     grid-row-end: 3;
     display: grid;
-    grid-template-columns: min-content;
     grid-template-rows: 55px min-content 1fr;
     padding: max(15px, 1.5vw);
     gap: 35px;
@@ -184,7 +183,6 @@ svg {
         font-size: 1.8em;
         line-height: 1.1;
         font-weight: bold;
-        padding-right: 60px;
     }
     a {
         display: inline-block;
@@ -384,8 +382,9 @@ svg {
 @media only screen and (max-width: 1100px) {
     .header {
         position: sticky;
+        position: -webkit-sticky;
         left: 0;
-        top: -137px;
+        top: -145px;
     }
     .main-wrapper {
         grid-template-columns: initial;
@@ -448,9 +447,10 @@ svg {
         grid-column: 1 / 2;
         position: fixed;
         top: 0;
-        display: none;
-        gap: 0.5em;
-        width: min-content;
+        left: -100%;
+        height: 100%;
+        width: 100%;
+        transition: 0.5s;
         div.sidebar-item {
             a {
                 gap: 0.5em;
@@ -459,16 +459,12 @@ svg {
             }
         }
         .logo-container .close-btn{
-            position: relative;
-            left: -18px;
-            top: -29px;
-            font-size: 2.5rem;
+            margin-left: auto;
+            margin-right: 0;
+            font-size: 3.5rem;
             color: inherit;
             display: initial;
         }
-    }
-    #mainSideNav {
-        display: none;
     }
 }
 
@@ -477,9 +473,6 @@ svg {
         .logo-container .close-btn{
             display: none;
         }
-    }
-    #mainSideNav {
-        display: initial !important;
     }
     #navToggle {
         display: none;
