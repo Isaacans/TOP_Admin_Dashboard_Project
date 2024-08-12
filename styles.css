@@ -33,11 +33,13 @@ End of reset
 CSS Custom Properties
 */
 :root {
-    --header-background-color: #ffe5c4;
-    --side-panel-bg-color: aquamarine;
-    --side-panel-text-color: #2c2c2c;
-    --main-background-color: blueviolet;
-    --main-text-color: #ffbb00;
+    --header-bg-color: #277975;
+    --side-panel-bg-color: #7acfcc;
+    --side-panel-text-color: #222c2c;
+    --main-bg-color: #51B7B3;
+    --main-text-color: #e0f7f7;
+    --highlight-color: #154b48;
+    --system-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",sans-serif;
 }
 /*
 End of CSS custom properties
@@ -49,8 +51,8 @@ End of CSS custom properties
 body {
     color: var(--main-text-color, rgb(32, 14, 14));
     font-size: clamp(8px, calc(0.5rem + 0.5vw), 72px); 
-    background-color: var(--header-background-color);
-    font-family: "Aller", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",sans-serif;
+    background-color: var(--header-bg-color);
+    font-family: "Aller", var(--system-ui);
 }
 
 .main-wrapper {
@@ -60,7 +62,8 @@ body {
     min-height: 100vh;
 }
 svg {
-    width: 1.8em;
+    width: 1.5em;
+    fill: var(--side-panel-text-color);
 }
 .profile-picture {
     width: 55px;
@@ -72,16 +75,27 @@ svg {
     grid-template-rows: min-content 1fr;
     grid-template-columns: 1.6fr 1fr;
     font-weight: bold;
-    background-color: var(--header-background-color, #ffe5c4);
+    background-color: var(--header-bg-color, #ffe5c4);
     padding: clamp(1em, 2vw, 4em);
     gap: clamp(1.25em, 2.5vw, 4em);
+    button {
+        color: var(--side-panel-text-color);
+        background-color: var(--side-panel-bg-color);
+        font-weight: bold;
+        font-size: 1.15em;
+        border: none;
+        border-radius: 25px;
+        width: 12ch;
+        height: 4.5ch;
+        margin: 0px 0.3em;
+    }
     button:hover {
         cursor: pointer;
-        box-shadow: -2px 3px 3px darkgrey, 2px -3px 3px lightgrey;
+        box-shadow: -3px 3px 3px var(--highlight-color), 3px -3px 3px var(--highlight-color);
     }
     button:active {
         cursor: pointer;
-        box-shadow: inset 0px 2px 2px darkgrey, inset 0px -3px 1px lightgrey;
+        box-shadow: inset -1px 3px 2px var(--highlight-color), inset 1px -3px 2px var(--highlight-color);
     }
     div {
         display: flex;
@@ -101,7 +115,7 @@ svg {
         input:autofill  {
             border: none;
             outline: none;
-            background-color: var(--main-background-color);
+            background-color: var(--main-bg-color);
             width: 100%;
             min-width: 35ch;
             height: 2.5rem;
@@ -126,7 +140,7 @@ svg {
         select:-webkit-autofill:focus {
             border: none;
             -webkit-text-fill-color: var(--main-text-color);
-            -webkit-box-shadow: 0 0 0px 1000px var(--main-background-color) inset;
+            -webkit-box-shadow: 0 0 0px 1000px var(--main-bg-color) inset;
         }          
         input:hover {
             box-shadow: 0px 0px 5px rgb(99, 99, 99), inset 0px 0px 5px rgb(99, 99, 99);
@@ -152,17 +166,6 @@ svg {
     div:nth-child(4) {
         display: flex;
         justify-content: space-evenly;
-        button {
-            color: var(--side-panel-text-color);
-            background-color: var(--side-panel-bg-color);
-            font-weight: bold;
-            font-size: 1.15em;
-            border: none;
-            border-radius: 25px;
-            width: 12ch;
-            height: 4.5ch;
-            margin: 0px 0.3em;
-        }
     }
     .profile-picture.main {
         width: 85px;
@@ -243,7 +246,7 @@ svg {
 
 
 .main-content-container {
-    background-color: var(--main-background-color, blueviolet);
+    background-color: var(--main-bg-color, blueviolet);
     display: grid;
     grid-template-rows: min-content 1fr;
     grid-template-columns: 2.5fr 1fr;
@@ -270,7 +273,7 @@ svg {
         padding-right: 1em;
         padding-left: 1.5em;
         border-radius: 10px;
-        background: linear-gradient(.25turn, orange 5px, 0%, var(--header-background-color));
+        background: linear-gradient(.25turn, var(--highlight-color) 8px, 0%, var(--header-bg-color));
         display: flex;
         flex-direction: column;
         font-size: 1.25em;
@@ -326,7 +329,7 @@ svg {
             flex-direction: column;
             justify-content: space-evenly;
             align-content: center;
-            background-color: var(--header-background-color);
+            background-color: var(--header-bg-color);
             border-radius: 10px;
             padding: 1.3em 1.5em;
             li:hover {
