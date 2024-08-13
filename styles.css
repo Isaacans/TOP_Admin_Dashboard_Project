@@ -33,12 +33,14 @@ End of reset
 CSS Custom Properties
 */
 :root {
-    --header-bg-color: #277975;
-    --side-panel-bg-color: #7acfcc;
-    --side-panel-text-color: #222c2c;
-    --main-bg-color: #51B7B3;
-    --main-text-color: #e0f7f7;
+    --header-bg-color: #23706c;
+    --header-text-color: #ffffff;
+    --side-panel-bg-color: #66e4e2;
+    --side-panel-text-color: #29393d;
+    --main-bg-color: #27c4be;
+    --main-text-color: #dfffff;
     --highlight-color: #154b48;
+    --hover-color: #6ab8cc;
     --system-ui: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",sans-serif;
 }
 /*
@@ -49,21 +51,24 @@ End of CSS custom properties
     src: url(fonts/aller_rg-webfont.woff2) format("woff2");
 }
 body {
-    color: var(--main-text-color, rgb(32, 14, 14));
-    font-size: clamp(9px, calc(0.5rem + 0.5vw), 72px); 
+    color: var(--main-text-color);
+    font-size: clamp(12px, calc(0.5rem + 0.5vw), 72px); 
     background-color: var(--header-bg-color);
     font-family: "Aller", var(--system-ui);
 }
 
 .main-wrapper {
     display: grid;
-    grid-template-columns: minmax(min-content, 1fr) 3.9fr;
+    grid-template-columns: minmax(min-content, 1fr) 4fr;
     grid-template-rows: min-content 1fr;
     min-height: 100vh;
 }
 svg {
     width: 1.5em;
-    fill: var(--side-panel-text-color);
+    fill: var(--header-text-color);
+}
+.header, h1, h2, h3 {
+    color: var(--header-text-color);
 }
 .profile-picture {
     width: 55px;
@@ -75,19 +80,19 @@ svg {
     grid-template-rows: min-content 1fr;
     grid-template-columns: 1.6fr 1fr;
     font-weight: bold;
-    background-color: var(--header-bg-color, #ffe5c4);
+    background-color: var(--header-bg-color);
     padding: clamp(1em, 2vw, 4em);
     gap: clamp(1.25em, 2.5vw, 4em);
     button {
-        color: var(--side-panel-text-color);
-        background-color: var(--side-panel-bg-color);
+        background-color: var(--main-bg-color);
         font-weight: bold;
-        font-size: 1.15em;
+        font-size: 1.3em;
         border: none;
-        border-radius: 25px;
+        border-radius: 45px;
         width: 12ch;
         height: 4.5ch;
         margin: 0px 0.3em;
+        color: inherit;
     }
     button:hover {
         cursor: pointer;
@@ -173,7 +178,7 @@ svg {
 }
 
 .sidebar {
-    background-color: var(--side-panel-bg-color, aquamarine);
+    background-color: var(--side-panel-bg-color);
     color: var(--side-panel-text-color);
     grid-row-start: 1;
     grid-row-end: 3;
@@ -209,7 +214,7 @@ svg {
         display: grid;
         grid-template-columns: 1.4em min-content;
         grid-auto-rows: 1.75em;
-        font-size: 1.3em;
+        font-size: 1.5em;
         align-items: center;
         gap: 1.2em;
         text-decoration: none;
@@ -246,30 +251,31 @@ svg {
 
 
 .main-content-container {
-    background-color: var(--main-bg-color, blueviolet);
+    background-color: var(--main-bg-color);
     display: grid;
     grid-template-rows: min-content 1fr;
     grid-template-columns: 2.5fr 1fr;
     padding: max(1.5em, 3vw) clamp(0.7em, 2vw, 95px);
+    padding-bottom: 5vw;
     /* For a uniform gap and margin */
-    --gap: max(1.25rem, 1vw);
+    --gap: max(1.25rem, 1.5vw);
     row-gap: var(--gap);
+    column-gap: 2vw;
     .main-content-sidebar > section > h1 {
         margin-bottom: var(--gap);
     }
     h1 {
-        font-size: 2.25em;
+        font-size: 2.15em;
         line-height: 1;
         font-weight: bold;
     }
-    column-gap: 2vw;
     .card-container {
        display: grid;
        gap: max(1em, 2vw);
        grid-template-rows: repeat(3, minmax(15em, 1fr));
        grid-template-columns: 1fr 1fr;
        .card {
-        padding: 1.2em;
+        padding: 1.75em 1.25em;
         padding-right: 1em;
         padding-left: 1.5em;
         border-radius: 10px;
@@ -277,9 +283,10 @@ svg {
         display: flex;
         flex-direction: column;
         font-size: 1.25em;
+        gap: max(0.2em, 5px);
         h1 {
             line-height: 1.3;
-            font-size: 1.25em;
+            font-size: 1.2em;
         }
         menu {
             margin-top: auto;
@@ -288,7 +295,6 @@ svg {
             justify-content: end;
             align-items: center;
             height: min-content;
-            padding-top: 1rem;
             li {
                 display: flex;
             }
@@ -333,7 +339,7 @@ svg {
             border-radius: 10px;
             padding: 1.3em 1.5em;
             li:hover {
-                background-color: #6ab8cc;
+                background-color: var(--hover-color);
                 border-radius: 10px;
             }
         }
@@ -353,15 +359,15 @@ svg {
         menu.announcements h2 {
             font-weight: bold;
             font-size: 1.25em;
-            color: var(--main-text-color)
         }
         menu.announcements p {
             color: var(--main-text-color);
+            font-size: 1em;
         }
 
         menu.trending {
             li {
-                padding: 0.75em;
+                padding: 1em 0.75em;
             }
             li > a {
                 display: flex;
@@ -373,11 +379,11 @@ svg {
                     line-height: 1;
                     min-width: 10ch;
                     span {
-                        font-size: 1.2em;
+                        font-size: 1.05em;
                         line-height: 1.5;
                     }
-                    h2 {
-                        font-size: 1.3em;
+                    p {
+                        font-size: 1.15em;
                     }
                 }
             }
@@ -397,7 +403,9 @@ svg {
         position: sticky;
         position: -webkit-sticky;
         left: 0;
-        top: -14.7em;
+        top: -16em;
+        row-gap: 2.25em;
+        padding: 3em clamp(1em, 2vw, 4em);
     }
     .main-wrapper .header .header-item button {
         width: 9ch;
@@ -408,6 +416,7 @@ svg {
     }
     .main-content-container {
         grid-template-columns: 1fr;
+        padding-top: 3.5em;
     }
     .main-content-container > div.card-container {
         grid-template-columns: 1fr;
@@ -468,6 +477,8 @@ svg {
         width: 100%;
         transition: 0.5s;
         z-index: 1;
+        font-size: 1.35em;
+        gap: 2.2em;
         .logo-container .close-btn {
             flex-basis: auto;
             margin-left: auto;
@@ -475,12 +486,6 @@ svg {
             color: inherit;
             display: initial;
         }
-    }
-}
-
-@media only screen and (max-width: 400px) {
-    .header {
-        top: -15.7em;
     }
 }
 
@@ -492,5 +497,17 @@ svg {
     }
     #navToggle {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    .header {
+        top: -15.7em;
+        padding: 1em;
+    }
+    .main-wrapper .header .header-item button {
+        width: 6.75ch;
+        border-radius: 20px;
+        height: 2.5em;
     }
 }

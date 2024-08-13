@@ -43,9 +43,9 @@
             
             <div class="header-item">
                 <span id="navToggle" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; </span>
-                <button>New</button>
-                <button>Upload</button>
-                <button>Share</button>
+                <button onclick="setColor1()" id="btnSetColor1">Color 1</button>
+                <button onclick="setThemeTOP()" id="btnSetThemeTOP">Click Me</button>
+                <button onclick="setColor3()" id="btnSetColor3">Color 3</button>
             </div>
         </div>
 
@@ -356,7 +356,7 @@
                                 <img src="images/jane-spencer-pixabay-profile-picture.jpg" alt="">
                                 <div>
                                     <span>@jane</span>
-                                    <h2>Future Proof Web</h2>
+                                    <p>Future Proof Web</p>
                                 </div>
                             </a>
                         </li>
@@ -365,7 +365,7 @@
                                 <img src="images/stacey-rice-pixabay-profile-picture.jpg" alt="">
                                 <div>
                                     <span>@stacey</span>
-                                    <h2>Good Acts, Good Works</h2>
+                                    <p>Good Acts, Good Works</p>
                                 </div>
                             </a>
                         </li>
@@ -374,7 +374,7 @@
                                 <img src="images/brian-james-pixabay-profile-picture.jpg" alt="">
                                 <div>
                                     <span>@brian</span>
-                                    <h2>Top CRM Tool</h2>
+                                    <p>Top CRM Tool</p>
                                 </div>
                             </a>
                         </li>
@@ -383,7 +383,7 @@
                                 <img src="images/todd-miller-pixabay-profile-picture.jpg" alt="">
                                 <div>
                                     <span>@todd</span>
-                                    <h2>Easy of Access Solutions</h2>
+                                    <p>Easy of Access Solutions</p>
                                 </div>
                             </a>
                         </li>
@@ -396,11 +396,44 @@
 
     <script>
         function openNav() {
-          document.getElementById("mainSideNav").style.left = "0";
+            document.getElementById("mainSideNav").style.left = "0";
         }
         
         function closeNav() {
-          document.getElementById("mainSideNav").style.left = "-100%";
+            document.getElementById("mainSideNav").style.left = "-100%";
+        }
+        
+        function setColor1() {
+            document.documentElement.style.setProperty('--header-bg-color', '#23706c');
+            document.documentElement.style.setProperty('--header-text-color', '#ffffff');
+            document.documentElement.style.setProperty('--side-panel-bg-color', '#66e4e2');
+            document.documentElement.style.setProperty('--side-panel-text-color', '#29393d');
+            document.documentElement.style.setProperty('--main-bg-color', '#27c4be');
+            document.documentElement.style.setProperty('--main-text-color', '#e0f7f7');
+            document.documentElement.style.setProperty('--highlight-color', '#154b48 ');
+            document.documentElement.style.setProperty('--hover-color', '#6ab8cc');
+        }
+
+        function setThemeTOP() {
+            document.documentElement.style.setProperty('--header-bg-color', '#ffffff');
+            document.documentElement.style.setProperty('--header-text-color', '#000000');
+            document.documentElement.style.setProperty('--side-panel-bg-color', '#1992d4')
+            document.documentElement.style.setProperty('--side-panel-text-color', '#ffffff');
+            document.documentElement.style.setProperty('--main-bg-color', '#e2e8f0');
+            document.documentElement.style.setProperty('--main-text-color', '#8a8a8a');
+            document.documentElement.style.setProperty('--highlight-color', '#f0b429');
+            document.documentElement.style.setProperty('--hover-color', '#c9dcff');
+        }
+
+        function setColor3() {
+            document.documentElement.style.setProperty('--header-bg-color', '#ffe5c4');
+            document.documentElement.style.setProperty('--header-text-color', '#000000');
+            document.documentElement.style.setProperty('--side-panel-bg-color', 'aquamarine')
+            document.documentElement.style.setProperty('--side-panel-text-color', '#ffffff');
+            document.documentElement.style.setProperty('--main-bg-color', 'blueviolet');
+            document.documentElement.style.setProperty('--main-text-color', 'rgb(32, 14, 14)');
+            document.documentElement.style.setProperty('--highlight-color', '#f0b429');
+            document.documentElement.style.setProperty('--hover-color', '#8cb4ff');
         }
     </script>
 
