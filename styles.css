@@ -405,7 +405,11 @@ svg {
         left: 0;
         top: -16em;
         row-gap: 2.25em;
-        padding: 3em clamp(1em, 2vw, 4em);
+        padding: 3em 1.5em clamp(1em, 2vw, 4em);
+        transition: 0.5s;
+    }
+    .header.show {
+        top: -25em;
     }
     .main-wrapper .header .header-item button {
         width: 9ch;

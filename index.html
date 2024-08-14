@@ -426,15 +426,34 @@
         }
 
         function setColor3() {
-            document.documentElement.style.setProperty('--header-bg-color', '#ffe5c4');
-            document.documentElement.style.setProperty('--header-text-color', '#000000');
-            document.documentElement.style.setProperty('--side-panel-bg-color', 'aquamarine')
-            document.documentElement.style.setProperty('--side-panel-text-color', '#ffffff');
-            document.documentElement.style.setProperty('--main-bg-color', 'blueviolet');
-            document.documentElement.style.setProperty('--main-text-color', 'rgb(32, 14, 14)');
-            document.documentElement.style.setProperty('--highlight-color', '#f0b429');
-            document.documentElement.style.setProperty('--hover-color', '#8cb4ff');
+            document.documentElement.style.setProperty('--header-bg-color', '#e1e1e1');
+            document.documentElement.style.setProperty('--header-text-color', 'black');
+            document.documentElement.style.setProperty('--side-panel-bg-color', '#e1e1e1')
+            document.documentElement.style.setProperty('--side-panel-text-color', 'black');
+            document.documentElement.style.setProperty('--main-bg-color', 'white');
+            document.documentElement.style.setProperty('--main-text-color', 'black');
+            document.documentElement.style.setProperty('--highlight-color', '#cee0f7');
+            document.documentElement.style.setProperty('--hover-color', '#cee0f7');
         }
+
+        // keep track of previous scroll position
+        let prevScrollPos = window.pageYOffset;
+
+        window.addEventListener('scroll', function() {
+            // current scroll position
+            const currentScrollPos = window.pageYOffset;
+
+            if (prevScrollPos < currentScrollPos) {
+                // user has scrolled up
+                document.querySelector('.header').classList.add('show');
+            } else {
+                // user has scrolled down
+                document.querySelector('.header').classList.remove('show');
+            }
+
+            // update previous scroll position
+            prevScrollPos = currentScrollPos;
+        });
     </script>
 
 </body>
